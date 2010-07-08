@@ -1,0 +1,68 @@
+<h2 class="function_title">Mitglieder suchen</h2>
+<div class="search content">
+  <div class="search_input edit">
+    Keyword: <input id="search_keyword" type="text" class="input text"/>
+  </div>
+  <hr/>
+  <div class="search_input edit">
+      Vorname: <input id="search_firstname" name="firstname" type="text" class="input texti search_field"/>
+  </div>
+  <div class="search_input edit">
+    Nachname: <input id="search_lastname" name="lastname" type="text" class="input text search_field"/>
+  </div>
+  <div class="search_input edit">
+    Email: <input id="search_email" name="email" type="text" class="input text search_field"/>
+  </div>
+  <div class="search_input edit">
+    Ort: <input id="search_town" name="town" type="text" class="input text search_field"/>
+  </div>
+  <div class="search_input edit">
+    PLZ: <input id="search_plz" name="plz" type="text" class="input numbers search_field"/>
+  </div>
+  <div class="search_input edit">
+    Erfa: <input id="search_erfa" name="erfa" type="text" class="input text search_field"/>
+  </div>
+</div>
+
+<div id="button_search" class="button"><a href='#'>Suchen ausfuehren</a></div>
+
+<script>
+$(document).ready(function() {
+    $("#button_search a").click(query_search);
+
+    // fokus keyword field
+    $("#search_keyword").focus();
+});
+
+function query_search(e) {
+    e.preventDefault();
+
+    var params = {};
+    if ($("#search_keyword")[0].value) {
+        params.keyword     = $("#search_keyword")[0].value;
+    } else {
+        $(".search_field").each(function() {
+            if (this.value) {
+                params[this.name] = this.value;
+            }
+        });
+    }
+
+    $.post("rest/search.lua", params, function(res) {
+        $("#mask_area").html('<h2>Suchergebnis</h2>');
+        res.forEach( function(entry) {
+            render_entry(entry);
+        });
+    });
+}
+
+function render_entry(entry) {
+    $("#mask_area").append('<div class="search_entry">' + entry.id + 
+        ' - ' + entry.firstname + ' ' + entry.lastname +
+        '<input type="button" value="edit" onclick="' + 
+        "javascript:call_edit('" + entry.id + "');\"/></div>");
+}
+
+// end
+</script>
+

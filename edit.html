@@ -1,0 +1,60 @@
+<h2 class="function_title">Mitglied editieren</h2>
+<div class="edit_doc content">
+  <div class="edit_input edit">
+    Chaosnummer: <input id="edit_id" type="text" class="input number" value="#id_value#"/>
+  </div>
+  <div class="edit_input edit">
+    Vorname: <input id="edit_firstname" type="text" class="input text"/>
+  </div>
+  <div class="edit_input edit">
+    Nachname: <input id="edit_lastname" type="text" class="input text"/>
+  </div>
+  <div class="edit_input edit">
+    Email: <input id="edit_email" type="text" class="input text"/>
+  </div>
+  <div class="edit_input edit">
+    Ort: <input id="edit_town" type="text" class="input text"/>
+  </div>
+  <div class="edit_input edit">
+    PLZ: <input id="edit_plz" type="text" class="input numbers"/>
+  </div>
+  <div class="edit_input edit">
+    Erfa: <input id="edit_erfa" etype="text" class="input text"/>
+  </div>
+</div>
+<div id="button_edit" class="button"><a href='#'>Speichern</a></div>
+<script>
+$(document).ready(function() {
+    // get profile and set values
+    $.post("rest/edit.lua", { get: $("#edit_id")[0].value }, function(res) {
+        $("#edit_firstname")[0].value = res.firstname;
+        $("#edit_lastname")[0].value  = res.lastname;
+        $("#edit_email")[0].value     = res.email;
+        $("#edit_town")[0].value      = res.town;
+        $("#edit_plz")[0].value       = res.plz;
+        $("#edit_erfa")[0].value      = res.erfa;
+    });
+
+    $("#button_edit a").click(save_profile);
+
+    // fokus keyword field
+    $("#edit_firstname").focus();
+});
+
+function save_profile() {
+    var params = {};
+    params.id        = $("#edit_id")[0].value;
+    params.firstname = $("#edit_firstname")[0].value;
+    params.lastname  = $("#edit_lastname")[0].value;
+    params.email     = $("#edit_email")[0].value;
+    params.town      = $("#edit_town")[0].value;
+    params.plz       = $("#edit_plz")[0].value;
+    params.erfa      = $("#edit_erfa")[0].value;
+    params.save      = 1;
+
+    $.post("rest/edit.lua", params, function(res) {
+        $("#mask_area").html(res);
+    });
+}
+</script>
+

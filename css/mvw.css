@@ -1,0 +1,64 @@
+*:focus {outline: none;}
+
+h1 {
+    text-align: center;
+    background-color: #204070;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+#function_options {
+    float: left;
+    width: 160px;
+    background-color: #b0c0ff;
+}
+
+#mask_area {
+    background-color: #b0c0ff;
+    margin-left: 200px;
+}
+
+#function_options, #mask_area {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.button {
+    background-color: #204070;;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.button a {
+    color: white;
+    text-decoration: none;
+}
+
+h1, #function_options, #mask_area, .button, .edit, .content {
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border: 0px;
+}
+
+h2 {
+    margin-top: 0px;
+    text-align: right;
+}
+
+.input {
+    border-style: none;
+}
+
+.edit {
+    margin-bottom: 5px;
+    background-color: white;
+    padding: 5px;
+}
+
+.content {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}

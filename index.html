@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>Mitgliederverwaltung</title>
+        <link rel="stylesheet" href="css/mvw.css" type="text/css" media="screen" />
+    </head>
+    <body>
+        <h1>Mitgliederverwaltung</h1>
+        <div id="function_options">
+            <div id="function_search" class="button"><a href='#'>Suchen</a></div>
+            <div id="function_add" class="button"><a href='#'>Neuanlage</a></div>
+            <div id="function_stats" class="button"><a href='#'>Statistiken</a></div>
+        </div>
+
+        <div id="mask_area">
+            <h2>Hilfe</h2>
+            <div class="content">
+                Mitgliederverwaltung des Vereins XY.<br/>
+                <br/>
+                Shortcuts:<br/>
+                Ctrl + n fuer Neuanlage<br/>
+                Ctrl + s fuer Mitglieder Suchen<br/>
+                Ctrl + i fuer Statistik Informationen<br/>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery.hotkeys.js"></script>
+        <script>
+$(document).ready(function() {
+  // mitglied suchen
+  $("#function_search a").click(function(e){
+    e.preventDefault();
+    call_search();
+  });
+
+  // mitglied hinzufuegen
+  $("#function_add a").click(function(e){
+    e.preventDefault();
+    call_add();
+  });
+
+
+  // mitglied hinzufuegen
+  $("#function_stats a").click(function(e){
+    e.preventDefault();
+    call_stats();
+  });
+
+  // hotkey
+  $(document).bind('keydown', 'ctrl+n', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      call_add();
+      return false;
+  });
+  $(document).bind('keydown', 'ctrl+s', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      call_search();
+      return false;
+  });
+  $(document).bind('keydown', 'ctrl+i', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      call_stats();
+      return false;
+  });
+
+
+  // end ready
+});
+
+function call_edit(id) {
+    $.get('edit.html', function(data) {
+        $('#mask_area').html(data.replace('#id_value#', id));
+    });
+}
+
+function call_add() {
+    $.get('add.html', function(data) {
+        $('#mask_area').html(data);
+    });
+}
+
+function call_search() {
+    $.get('search.html', function(data) {
+        $('#mask_area').html(data);
+    });
+}
+
+function call_stats() {
+    $.get('stats.html', function(data) {
+        $('#mask_area').html(data);
+    });
+}
+        </script>
+    </body>
+</html>
+
+
