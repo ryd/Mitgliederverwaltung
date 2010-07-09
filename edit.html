@@ -1,40 +1,41 @@
-<h2 class="function_title">Mitglied editieren</h2>
+<h2 class="function_title"></h2>
 <div class="edit_doc content">
   <div class="edit_input edit">
-    Chaosnummer: <input id="edit_id" type="text" class="input number" value="#id_value#"/>
+    Chaosnummer: <input id="edit_id" name="id" type="text" class="input number edit_field" value="#id_value#"/>
   </div>
   <div class="edit_input edit">
-    Vorname: <input id="edit_firstname" type="text" class="input text"/>
+    Vorname: <input id="edit_firstname" name="firstname" type="text" class="input text edit_field"/>
   </div>
   <div class="edit_input edit">
-    Nachname: <input id="edit_lastname" type="text" class="input text"/>
+    Nachname: <input id="edit_lastname" name="lastname" type="text" class="input text edit_field"/>
   </div>
   <div class="edit_input edit">
-    Email: <input id="edit_email" type="text" class="input text"/>
+    Email: <input id="edit_email" name="email" type="text" class="input text edit_field"/>
   </div>
   <div class="edit_input edit">
-    Ort: <input id="edit_town" type="text" class="input text"/>
+    Street: <input id="edit_street" name="street" type="text" class="input text edit_field"/>
   </div>
   <div class="edit_input edit">
-    PLZ: <input id="edit_plz" type="text" class="input numbers"/>
+    Ort: <input id="edit_town" name="town" type="text" class="input text edit_field"/>
   </div>
   <div class="edit_input edit">
-    Erfa: <input id="edit_erfa" etype="text" class="input text"/>
+    PLZ: <input id="edit_plz" name="plz" type="text" class="input numbers edit_field"/>
+  </div>
+  <div class="edit_input edit">
+    Erfa: <input id="edit_erfa" name="erfa" type="text" class="input text edit_field"/>
   </div>
 </div>
 <div id="button_edit" class="button"><a href='#'>Speichern</a></div>
 <script>
 $(document).ready(function() {
     // get profile and set values
-    $.post("rest/edit.lua", { get: $("#edit_id")[0].value }, function(res) {
-        $("#edit_firstname")[0].value = res.firstname;
-        $("#edit_lastname")[0].value  = res.lastname;
-        $("#edit_email")[0].value     = res.email;
-        $("#edit_town")[0].value      = res.town;
-        $("#edit_plz")[0].value       = res.plz;
-        $("#edit_erfa")[0].value      = res.erfa;
+    $.post("rest/edit.lua", { get: $("#edit_id")[0].value }, function(params) {
+        $(".edit_field").each(function() {
+           this.value = params[this.name]
+        });
     });
 
+    // add handler for button
     $("#button_edit a").click(save_profile);
 
     // fokus keyword field
@@ -42,18 +43,15 @@ $(document).ready(function() {
 });
 
 function save_profile() {
-    var params = {};
-    params.id        = $("#edit_id")[0].value;
-    params.firstname = $("#edit_firstname")[0].value;
-    params.lastname  = $("#edit_lastname")[0].value;
-    params.email     = $("#edit_email")[0].value;
-    params.town      = $("#edit_town")[0].value;
-    params.plz       = $("#edit_plz")[0].value;
-    params.erfa      = $("#edit_erfa")[0].value;
-    params.save      = 1;
+    var params = { save:1 };
+    $(".edit_field").each(function() {
+        if (this.value) {
+            params[this.name] = this.value;
+        }
+    });
 
     $.post("rest/edit.lua", params, function(res) {
-        $("#mask_area").html(res);
+        $("#mask_area").html("gespeichert");
     });
 }
 </script>

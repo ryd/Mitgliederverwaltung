@@ -1,22 +1,25 @@
 <h2 class="function_title">Mitglied anlegen</h2>
 <div class="add content">
     <div class="add_input edit">
-    Vorname: <input id="add_firstname" type="text" class="input text"/>
+    Vorname: <input id="add_firstname" name="firstname" type="text" class="input text"/>
   </div>
   <div class="add_input edit">
-    Nachname: <input id="add_lastname" type="text" class="input text"/>
+    Nachname: <input id="add_lastname" name="lastname" type="text" class="input text"/>
   </div>
   <div class="add_input edit">
-    Email: <input id="add_email" type="text" class="input text"/>
+    Email: <input id="add_email" name="email" type="text" class="input text"/>
   </div>
   <div class="add_input edit">
-    Ort: <input id="add_town" type="text" class="input text"/>
+    Street: <input id="add_street" name="street" type="text" class="input text"/>
   </div>
   <div class="add_input edit">
-    PLZ: <input id="add_plz" type="text" class="input numbers"/>
+    Ort: <input id="add_town" name="town" type="text" class="input text"/>
   </div>
   <div class="add_input edit">
-    Erfa: <input id="add_erfa" etype="text" class="input text"/>
+    PLZ: <input id="add_plz" name="plz" type="text" class="input numbers"/>
+  </div>
+  <div class="add_input edit">
+    Erfa: <input id="add_erfa" name="erfa" type="text" class="input text"/>
   </div>
 </div>
 <div id="button_add" class="button"><a href='#'>Mitglied anlegen</a></div>
@@ -25,21 +28,22 @@ $(document).ready(function() {
     $("#button_add a").click(function(e){
         e.preventDefault();
 
-        var params = {};
-        params.id        = 'new';
-        params.firstname = $("#add_firstname")[0].value;
-        params.lastname  = $("#add_lastname")[0].value;
-        params.email     = $("#add_email")[0].value;
-        params.town      = $("#add_town")[0].value;
-        params.plz       = $("#add_plz")[0].value;
-        params.erfa      = $("#add_erfa")[0].value;
+        // put all fields into one array
+        var params = { id='new' };
+        $(".search_field").each(function() {
+            if (this.value) {
+                params[this.name] = this.value;
+            }
+        });
 
+        // post new member
         $.post("rest/add.lua", params, function(res) {
             alert("Mitglied angelegt -  id="+res.id);
             call_edit(res.id);
         });
   });
 
+  // focus first field
   $("#add_firstname").focus();
 });
 </script>
