@@ -31,6 +31,7 @@
 
 <script>
 $(document).ready(function() {
+    // Add function to link
     $("#button_search a").click(query_search);
 
     // fokus keyword field
@@ -52,10 +53,16 @@ function query_search(e) {
     }
 
     $.post("rest/search.lua", params, function(res) {
-        $("#mask_area").html('<h2>Suchergebnis</h2>');
-        res.forEach( function(entry) {
-            render_entry(entry);
-        });
+        if( res[1] ) {
+            $("#mask_area").html('<h2>Suchergebnis</h2>');
+            res.forEach( function(entry) {
+                render_entry(entry);
+            });
+        } else if ( res[0] ) {
+            call_edit( res[0].id );
+        } else {
+            alert("no result");
+        }
     });
 }
 
@@ -65,7 +72,5 @@ function render_entry(entry) {
         '<input type="button" value="edit" onclick="' + 
         "javascript:call_edit('" + entry.id + "');\"/></div>");
 }
-
-// end
 </script>
 
