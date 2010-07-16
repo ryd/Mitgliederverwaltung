@@ -61,7 +61,8 @@ function query_search(e) {
         } else if ( res[0] ) {
             call_edit( res[0].id );
         } else {
-            alert("no result");
+            alert("no result found");
+            $("#search_keyword").focus();
         }
     });
 }
