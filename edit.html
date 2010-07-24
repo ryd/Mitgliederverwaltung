@@ -31,7 +31,7 @@ $(document).ready(function() {
     // get profile and set values
     $.post("rest/edit.lua", { get: $("#edit_id")[0].value }, function(params) {
         $(".edit_field").each(function() {
-           this.value = params[this.name]
+           this.value = unescape(params[this.name]);
         });
     });
 
@@ -46,7 +46,7 @@ function save_profile() {
     var params = { save:1 };
     $(".edit_field").each(function() {
         if (this.value) {
-            params[this.name] = this.value;
+            params[this.name] = escape(this.value);
         }
     });
 

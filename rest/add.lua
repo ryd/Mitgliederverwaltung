@@ -13,12 +13,12 @@ function handle(r)
 
     if r.method == 'POST' then
         for k, v in pairs( r:parseargs() ) do
-            params[k] = v
+            params[k] = utils.urldecode(v)
         end
 
         local body = {}
         for k, v in pairs( r:parsebody() ) do
-            body[k] = v
+            body[k] = utils.urldecode(v)
         end
         dispatch_post(r, params, body)
     else

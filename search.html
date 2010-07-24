@@ -43,11 +43,11 @@ function query_search(e) {
 
     var params = {};
     if ($("#search_keyword")[0].value) {
-        params.keyword     = $("#search_keyword")[0].value;
+        params.keyword     = escape($("#search_keyword")[0].value);
     } else {
         $(".search_field").each(function() {
             if (this.value) {
-                params[this.name] = this.value;
+                params[this.name] = escape(this.value);
             }
         });
     }

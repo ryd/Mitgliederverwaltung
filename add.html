@@ -39,7 +39,7 @@ function query_add(e) {
     var params = { id:'new' };
     $(".add_field").each(function() {
         if (this.value) {
-            params[this.name] = this.value;
+            params[this.name] = escape(this.value);
         }
     });
 

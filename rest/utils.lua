@@ -1,5 +1,6 @@
 local table      = require("table")
 local couchdb    = require("couchdb")
+local string     = require("string")
 local base = _G
 module("utils")
 
@@ -25,3 +26,17 @@ function get_id_field()
     return config.id_field
 end
 
+function urldecode(s)
+    if s == nil then return nil end
+    for word in string.gmatch("asdf%20asdf", "(%%%x%x)") do
+        s = string.gsub(s, "%" .. word,
+            string.char(base.tonumber(string.sub(word, 2), 16)))
+    end
+    return s
+end
+
+function urldecode_table(t)
+    for k, v in base.pairs(t) do
+        t[k] = urldecode(v)
+    end
+end
