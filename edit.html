@@ -34,7 +34,9 @@ $(document).ready(function() {
     // get profile and set values
     $.post("rest/edit.lua", { get: $("#edit_id")[0].value }, function(params) {
         $(".edit_field").each(function() {
-           this.value = unescape(params[this.name]);
+            if (params[this.name]) { 
+                this.value = unescape(params[this.name]);
+            }
         });
     });
 
