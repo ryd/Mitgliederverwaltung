@@ -1,31 +1,28 @@
 <h2 class="function_title">Mitglied anlegen</h2>
 <div class="add content">
     <div class="add_input edit">
-    Vorname: <input id="add_firstname" name="firstname" type="text" class="input text add_field"/>
+    Prename: <input id="add_firstname" name="firstname" type="text" class="input text add_field"/>
   </div>
   <div class="add_input edit">
-    Nachname: <input id="add_lastname" name="lastname" type="text" class="input text add_field"/>
+    Lastname: <input id="add_lastname" name="lastname" type="text" class="input text add_field"/>
   </div>
   <div class="add_input edit">
     Email: <input id="add_email" name="email" type="text" class="input text add_field"/>
   </div>
   <div class="add_input edit">
-    Strasse: <input id="add_street" name="street" type="text" class="input text add_field"/>
+    Street: <input id="add_street" name="street" type="text" class="input text add_field"/>
   </div>
   <div class="add_input edit">
-    Ort: <input id="add_town" name="town" type="text" class="input text add_field"/>
+    Town: <input id="add_town" name="town" type="text" class="input text add_field"/>
   </div>
   <div class="add_input edit">
-    PLZ: <input id="add_plz" name="plz" type="text" class="input numbers add_field"/>
+    ZIP: <input id="add_plz" name="plz" type="text" class="input numbers add_field"/>
   </div>
   <div class="edit_input edit">
-    Eintrittsdatum: <input id="add_entry_date" name="entry_date" type="text" class="date-pick input add_field"/>
-  </div>
-  <div class="add_input edit">
-    Erfa: <input id="add_erfa" name="erfa" type="text" class="input text add_field"/>
+    Entry date: <input id="add_entry_date" name="entry_date" type="text" class="date-pick input add_field"/>
   </div>
 </div>
-<div id="button_add" class="button"><a href='#'>Mitglied anlegen</a></div>
+<div id="button_add" class="button"><a href='#'>add member</a></div>
 <script>
 $(document).ready(function() {
     // Add function
@@ -54,7 +51,7 @@ function query_add(e) {
 
     // post new member
     $.post("rest/add.lua", params, function(res) {
-        alert("Mitglied angelegt -  id="+res.id);
+        alert("member added -  id="+res.id);
         call_edit(res.id);
     });
 }

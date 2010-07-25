@@ -1,26 +1,26 @@
 <html>
     <head>
-        <title>Mitgliederverwaltung</title>
+        <title>member database</title>
         <link rel="stylesheet" href="css/mvw.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/datePicker.css" type="text/css" media="screen" />
     </head>
     <body>
-        <h1>Mitgliederverwaltung</h1>
+        <h1>member database</h1>
         <div id="function_options">
-            <div id="function_search" class="button"><a href='#'>Suchen</a></div>
-            <div id="function_add" class="button"><a href='#'>Neuanlage</a></div>
-            <div id="function_stats" class="button"><a href='#'>Statistiken</a></div>
+            <div id="function_search" class="button"><a href='#'>Search</a></div>
+            <div id="function_add" class="button"><a href='#'>Add member</a></div>
+            <div id="function_stats" class="button"><a href='#'>Statistics</a></div>
         </div>
 
         <div id="mask_area">
-            <h2>Hilfe</h2>
+            <h2>Help</h2>
             <div class="content">
-                Mitgliederverwaltung des Vereins XY.<br/>
+                member database from XY.<br/>
                 <br/>
                 Shortcuts:<br/>
-                Ctrl + n fuer Neuanlage<br/>
-                Ctrl + s fuer Mitglieder Suchen<br/>
-                Ctrl + i fuer Statistik Informationen<br/>
+                Ctrl + n to add member<br/>
+                Ctrl + s to search members<br/>
+                Ctrl + i to print statistics<br/>
             </div>
         </div>
 
@@ -30,20 +30,20 @@
         <script type="text/javascript" src="js/date.js"></script>
         <script>
 $(document).ready(function() {
-  // mitglied suchen
+  // search member
   $("#function_search a").click(function(e){
     e.preventDefault();
     call_search();
   });
 
-  // mitglied hinzufuegen
+  // add member
   $("#function_add a").click(function(e){
     e.preventDefault();
     call_add();
   });
 
 
-  // mitglied hinzufuegen
+  // print stats
   $("#function_stats a").click(function(e){
     e.preventDefault();
     call_stats();
@@ -71,7 +71,7 @@ $(document).ready(function() {
 
   // date field
   Date.firstDayOfWeek = 1;
-  Date.format = 'dd.mm.yyyy';
+  Date.format = 'yyyy/dd/mm';
 
   // end ready
 });

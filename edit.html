@@ -1,34 +1,31 @@
 <h2 class="function_title"></h2>
 <div class="edit_doc content">
   <div class="edit_input edit">
-    Chaosnummer: <input id="edit_id" name="id" type="text" class="input number edit_field" value="#id_value#"/>
+    Member ID: <input id="edit_id" name="id" type="text" class="input number edit_field" value="#id_value#"/>
   </div>
   <div class="edit_input edit">
-    Vorname: <input id="edit_firstname" name="firstname" type="text" class="input text edit_field"/>
+    Prename: <input id="edit_firstname" name="firstname" type="text" class="input text edit_field"/>
   </div>
   <div class="edit_input edit">
-    Nachname: <input id="edit_lastname" name="lastname" type="text" class="input text edit_field"/>
+    Lastname: <input id="edit_lastname" name="lastname" type="text" class="input text edit_field"/>
   </div>
   <div class="edit_input edit">
     Email: <input id="edit_email" name="email" type="text" class="input text edit_field"/>
   </div>
   <div class="edit_input edit">
-    Strasse: <input id="edit_street" name="street" type="text" class="input text edit_field"/>
+    Street: <input id="edit_street" name="street" type="text" class="input text edit_field"/>
   </div>
   <div class="edit_input edit">
-    Ort: <input id="edit_town" name="town" type="text" class="input text edit_field"/>
+    Town: <input id="edit_town" name="town" type="text" class="input text edit_field"/>
   </div>
   <div class="edit_input edit">
-    PLZ: <input id="edit_plz" name="plz" type="text" class="input numbers edit_field"/>
+    ZIP: <input id="edit_plz" name="plz" type="text" class="input numbers edit_field"/>
   </div>
   <div class="edit_input edit">
-    Eintrittsdatum: <input id="edit_entry_date" name="entry_date" type="text" class="date-pick input edit_field"/>
-  </div>
-  <div class="edit_input edit">
-    Erfa: <input id="edit_erfa" name="erfa" type="text" class="input text edit_field"/>
+    Entry date: <input id="edit_entry_date" name="entry_date" type="text" class="date-pick input edit_field"/>
   </div>
 </div>
-<div id="button_edit" class="button"><a href='#'>Speichern</a></div>
+<div id="button_edit" class="button"><a href='#'>Save</a></div>
 <script>
 $(document).ready(function() {
     // get profile and set values
@@ -60,7 +57,7 @@ function save_profile() {
     });
 
     $.post("rest/edit.lua", params, function(res) {
-        $("#mask_area").html("gespeichert");
+        $("#mask_area").html("saved");
     });
 }
 </script>
