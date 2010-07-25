@@ -2,6 +2,7 @@
     <head>
         <title>Mitgliederverwaltung</title>
         <link rel="stylesheet" href="css/mvw.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/datePicker.css" type="text/css" media="screen" />
     </head>
     <body>
         <h1>Mitgliederverwaltung</h1>
@@ -25,6 +26,8 @@
 
         <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
         <script type="text/javascript" src="js/jquery.hotkeys.js"></script>
+        <script type="text/javascript" src="js/jquery.datePicker.min-2.1.2.js"></script>
+        <script type="text/javascript" src="js/date.js"></script>
         <script>
 $(document).ready(function() {
   // mitglied suchen
@@ -65,6 +68,10 @@ $(document).ready(function() {
       call_stats();
       return false;
   });
+
+  // date field
+  Date.firstDayOfWeek = 1;
+  Date.format = 'dd.mm.yyyy';
 
   // end ready
 });

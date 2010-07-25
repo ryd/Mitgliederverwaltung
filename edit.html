@@ -22,6 +22,9 @@
     PLZ: <input id="edit_plz" name="plz" type="text" class="input numbers edit_field"/>
   </div>
   <div class="edit_input edit">
+    Eintrittsdatum: <input id="edit_entry_date" name="entry_date" type="text" class="date-pick input edit_field"/>
+  </div>
+  <div class="edit_input edit">
     Erfa: <input id="edit_erfa" name="erfa" type="text" class="input text edit_field"/>
   </div>
 </div>
@@ -40,6 +43,10 @@ $(document).ready(function() {
 
     // fokus keyword field
     $("#edit_firstname").focus();
+
+    // date fields
+    $('.date-pick').datePicker({clickInput:true, createButton:false, startDate:'01/01/1981'});
+
 });
 
 function save_profile() {

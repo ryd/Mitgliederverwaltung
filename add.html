@@ -18,6 +18,9 @@
   <div class="add_input edit">
     PLZ: <input id="add_plz" name="plz" type="text" class="input numbers add_field"/>
   </div>
+  <div class="edit_input edit">
+    Eintrittsdatum: <input id="add_entry_date" name="entry_date" type="text" class="date-pick input add_field"/>
+  </div>
   <div class="add_input edit">
     Erfa: <input id="add_erfa" name="erfa" type="text" class="input text add_field"/>
   </div>
@@ -30,6 +33,12 @@ $(document).ready(function() {
 
     // focus first field
     $("#add_firstname").focus();
+
+    // date fields
+    $('.date-pick').datePicker({clickInput:true, createButton:false, startDate:'01/01/1981'});
+
+    // set default value
+    $("#add_entry_date").val(new Date().asString());
 });
 
 function query_add(e) {
