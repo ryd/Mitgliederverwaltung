@@ -9,7 +9,7 @@ config.host = "localhost"
 config.port = 5984
 config.debug = false
 config.schema = 'example'
-config.id_field = 'mitgliedernummer'
+config.id_field = 'id'
 
 
 function get_config()

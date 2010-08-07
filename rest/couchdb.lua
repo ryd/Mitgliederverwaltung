@@ -13,7 +13,6 @@ config.debug = false
 
 local couchdb_request
 local to_json
-local get_documents_by_condition
 local get_documents_by_filter
 local make_condition
 
@@ -169,15 +168,20 @@ function make_condition(key, value)
 end
 
 -- return documents by given condition
-function get_documents_by_condition(db, condition)
+function get_documents_by_condition(db, condition, sort)
     -- check
     base.assert(db and condition, 'parameter is wrong or missing')
+
+    -- sorting - null == without sorting
+    if sort == nil then
+        sort = 'null'
+    end
 
     -- create request and response
     local response =  couchdb_request({
         path = db .. '/_temp_view',
         methode = 'POST',
-        body = { map = "function(doc) { if (" .. condition ..  ") { emit(null, doc); }}" }
+        body = { map = "function(doc) { if (" .. condition ..  ") { emit(" .. sort .. ", doc); }}" }
     })
 
     -- map documents
