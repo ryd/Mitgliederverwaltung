@@ -36,7 +36,7 @@ end
 function export_tsv(r)
     r.content_type = 'text/tsv'
     result = couchdb.get_documents_by_condition(utils.get_config(), 
-            'doc.' .. utils.config.id_field, 'doc.' .. utils.config.id_field)
+            'doc.' .. utils.config.id_field, 'parseInt(doc.' .. utils.config.id_field .. ')')
     r:puts(table.concat(fields, "\t") .. "\n")
     for i, v in base.ipairs(result) do
         row = {}
