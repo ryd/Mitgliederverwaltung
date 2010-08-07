@@ -10,6 +10,7 @@
             <div id="function_search" class="button"><a href='#'>Suchen</a></div>
             <div id="function_add" class="button"><a href='#'>Neuanlage</a></div>
             <div id="function_stats" class="button"><a href='#'>Statistiken</a></div>
+            <div id="function_export" class="button"><a href='#'>Export</a></div>
         </div>
 
         <div id="mask_area">
@@ -21,6 +22,7 @@
                 Ctrl + n fuer Neuanlage<br/>
                 Ctrl + s fuer Mitglieder Suchen<br/>
                 Ctrl + i fuer Statistik Informationen<br/>
+                Ctrl + x fuer Export<br/>
             </div>
         </div>
 
@@ -42,11 +44,16 @@ $(document).ready(function() {
     call_add();
   });
 
-
   // mitglied hinzufuegen
   $("#function_stats a").click(function(e){
     e.preventDefault();
     call_stats();
+  });
+
+  // mitglied hinzufuegen
+  $("#function_export a").click(function(e){
+    e.preventDefault();
+    call_export();
   });
 
   // hotkey
@@ -66,6 +73,12 @@ $(document).ready(function() {
       e.stopPropagation();
       e.preventDefault();
       call_stats();
+      return false;
+  });
+  $(document).bind('keydown', 'ctrl+x', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      call_export();
       return false;
   });
 
@@ -96,6 +109,12 @@ function call_search() {
 
 function call_stats() {
     $.get('stats.html', function(data) {
+        $('#mask_area').html(data);
+    });
+}
+
+function call_export() {
+    $.get('export.html', function(data) {
         $('#mask_area').html(data);
     });
 }
